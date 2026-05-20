@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #faf7f2;
+  --blush: #f2c4ce;
+  --rose: #e8637a;
+  --wine: #8b1a36;
+  --coal: #1a1014;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--coal);
+  color: var(--cream);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #8b1a3640;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rose);
+}
+
+/* noise texture overlay */
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+.glass {
+  background: rgba(250, 247, 242, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(250, 247, 242, 0.08);
+}
+
+.message-bubble-me {
+  background: linear-gradient(135deg, var(--wine), var(--rose));
+  border-radius: 20px 20px 4px 20px;
+}
+
+.message-bubble-them {
+  background: rgba(250, 247, 242, 0.07);
+  border: 1px solid rgba(250, 247, 242, 0.1);
+  border-radius: 20px 20px 20px 4px;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.ripple {
+  animation: ripple 1.5s ease-out infinite;
+}
+
+.ripple-2 {
+  animation: ripple 1.5s ease-out 0.5s infinite;
+}
+
+.ripple-3 {
+  animation: ripple 1.5s ease-out 1s infinite;
+}
